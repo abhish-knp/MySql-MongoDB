@@ -131,6 +131,18 @@ SELECT Shippers.ShipperName, COUNT(Orders.OrderID) AS NumberOfOrders FROM Orders
 LEFT JOIN Shippers ON Orders.ShipperID = Shippers.ShipperID
 GROUP BY ShipperName;
 
+--ALTER, TO add a new Column with Alter Table
+ALTER TABLE users
+ADD id_number TEXT;
+
+-- To create a new column with default value
+ALTER TABLE users
+ADD country TEXT DEFAULT "United State";
+
+-- Order By Column_name DESC, Ascending order
+SELECT employee_id, first_name, last_name, salary
+FROM engineering ORDER BY salary DESC;
+
 -- Show the name and population for 'france','Germany','Italy'.
 SELECT name, population
 FROM world
