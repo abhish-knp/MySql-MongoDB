@@ -162,6 +162,39 @@ SELECT * FROM employee
     where salary=(select Max(salary) from emplyoee);
 
 
+-- Create a new table witch consists of data and structure copied from the other table
+Select * into NewTable from Emplyoee
+    where 1 =0;
+    Create table newtable as
+        select * from Employee
+        
+-- Fetch records that are present in one tabel but not in another table
+Select * from empSalary
+    left join ManagerSalary
+        using (empId) where ManagerSalary.EmpId is NULL;
+        
+-- To Remove duplicates from tables
+Select firstname, lastname, country, count(*) as cnt
+    from emp group by firstname, lastname, country 
+        having count(*) > 1;
+        
+-- To Retrieve the first 10 records of student with ID numbers that ending 0.
+Select top 10 ID_number from student
+    where ID_number % 10 = 0 order by ID_number;
 
+-- Some countries have population more than three times
+Select x.name, x.continent form world x
+    where x.population/3 > ALL
+        (select y.population from world as y
+            where x.continent = y.continent and x.name != y.name)
+            
+            
+-- Indexer of Sql 
+Create index index_name on table_name (column1, column2);
+
+-- Types of keys used in DBMS - Primary Key, -Super Key, Forign Key, Unique Key, Alternate Key, Composite, Candidate. 
+     
+  
+        
 
 
