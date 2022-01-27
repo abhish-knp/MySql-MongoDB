@@ -194,7 +194,11 @@ Create index index_name on table_name (column1, column2);
 
 -- Types of keys used in DBMS - Primary Key, -Super Key, Forign Key, Unique Key, Alternate Key, Composite, Candidate. 
      
-  
+-- Show teamname and the total number of goals scored.
+Select eteam.teamname, count(*) from eteam
+    join goal on eteam.id = goal.teamid
+        group by eteam teamname
+            order by game.id
         
 
 
