@@ -1,2 +1,49 @@
--- methods to insert documents into a collection
-db.collection.insertOne()
+-- Create New DB or Switch to Existing DB
+use DB_Name
+
+-- Listing all the Databasees
+show dbs
+
+-- Create Collection
+db.createCollection(Name, Options)
+
+-- Drop Collection
+use DB_Name
+db.DB_Name_Collection.drop()
+
+-- CRUD Operation related
+-- insert a single record
+b.geekFlareCollection.insertOne( {
+ code: "P123", Qty: 200, status: "Active"
+});
+
+-- insert many records
+db.geekFlareCollection.insertMany([
+  { code: "P1", Qty: 100, status: "Active"},
+  { code: "P2", Qty: 200, status: "Active"},
+  { code: "P3", Qty: 0, status: "Dective"}
+  ]);
+  
+  -- Retrieve Document from a Collection, find() method
+  db.geekFlareCollection.find({ Qty: { $eq: 100 }});
+  
+  -- Update Document in a Collection
+  db.geekFlareCollection.updateOne({"product" : "bottles"},{$set : {"Qty": 40}}  )
+  
+  -- Cursor in MongoDB: is a pointer to iterate over the result set.
+  var newCursor1=db.geekFlareCollection.find()
+  while(newCursor1.hasNext()){ printjson(newCursor1.next())}
+  
+  -- Access Control in MongoDB
+  
+  -- MongoDB Connectivity with Python
+from pymongo import MongoClient
+mClient=MongoClient("mongodb://127.0.0.1:27017/")
+mDB=mClient.geekFlareDB
+mRecord={"_id":4,"name":"XYZ"}
+mDB.geekFlareCollection.insert_one(mRecord)
+
+for i in mDB.geekFlareCollection.find({"_id":4}):
+     print(i)
+  
+  
