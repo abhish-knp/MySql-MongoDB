@@ -1,0 +1,2 @@
+-- methods to insert documents into a collection
+db.collection.insertOne()
