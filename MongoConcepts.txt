@@ -1,0 +1,61 @@
+MongoDB:
+Collection of data is called database, mongodb workd on cocept of collection(group of documents) and document.Mongo does not enforce a schema. RDBMS tables. 
+Document is a set o key-value pairs,has Dynamic schemas.
+
+Comparison 
+Sql :    Database, Table,      Row,       Column, Table Join,        Primary Key
+MongoDB: DB,       Collection, Documents, Feilds, Embedded Documents,default key_id is given by MongoDB.
+
+_id: kind of primary key,
+embedded sub-document : nested json docs.
+ 
+_id Field: 12 bytes hexadecimal number which assures the uniqueness of every document. these 12 byte are made of: 4 bytes for the current timestamp, next 3 bytes for machine id(what machine created this object), next 2 for process id of mongoDB server, Last 3 bytes are simple incremental VALUE.
+
+Advantages of MongoDB over RDBMS: Schema less, Structure of a single object is clear, no complex join, deep query, Tuning, Ease of scale out, no conversion is required. 
+
+Why : Document oriented storage, index of any attribute, fast in place updates, user data management, Big Data.
+
+-- Creating and Deleting Database. 
+Design your schema according to user requirements. Duplicate the data(but limited), Do join while write, not on read, do complex aggregation in the schema. 
+
+use Database_name --> to create database(it'll create or switch to databae)
+db --> current database
+show db --> should be atleast one document
+db.movie.insert({name: movie}) --> to insert item
+db.dropDatabase() --> to drop existing database --> dropped deleted.
+
+Querying the database: 
+db.dbname.find() --> find() method.
+db.dbname.find({}).pretty() --> prettyfy the docs.
+db.dbname.find({"name":"Jack"}) --> To find named Jack
+
+equality :- ":" works as equls to symbol
+less than:- {<key>:{$lt:<value>}}, $lt : less than or $lte (less than and eql)
+db.dbname.find({"likes":{$lt:5o}}).pretty() --> llikes < 50
+$gt and $ gte(greater than equal)
+$ne (not equals)
+$and : for AND operation, conditions is in list format.
+$or : for OR operation, conditions must be in the list format
+
+db.dbname.find({$and:[{'like':'$gt:50'},{'like':'$lte:100'}]}) --> this is how mongo query works.
+
+Updating documets in MongoDB- 
+Update(): update docs into a collection, values in the existing docs while Save() method replaced the existing docs with the document passed in save() method. 
+db.dbname.update(selection_criteria, updated_Data)
+db.mydb.update({'title':'Mongo'},{$set:{'title':'new mongodb'},{multi:true}})
+--> remeber we used $set parameter. multi for more the one documents.
+
+Deleting Documents
+remove() method is used to remove a document from the collection.
+db.collection.remove(deletion_Criteria)
+db.mydb.remove({'title':'MongoDB'})
+
+Projection: lets assume a collection has 5 feilds but we require only 2, no need for 3 feild so we use find() method differently.
+db.collection_name.find({},{KEY:1})
+db.mycol.find({},{"title":1, _id:0}) --> return only title not id, cz _id = 0.
+
+Limiting Records: limit() method, limit the documents
+db.mycol.find({},{"title":1, _id:0}).limit(1), no specify number it'll omit all.
+
+Sorting Docs: sort() method., sort({KEY:1}) -- ascending order, key: -1 of desc.
+db.mycol.find().sort({KEY:1})
