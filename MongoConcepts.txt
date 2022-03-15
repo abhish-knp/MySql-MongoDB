@@ -9,7 +9,11 @@ MongoDB: DB,       Collection, Documents, Feilds, Embedded Documents,default key
 _id: kind of primary key,
 embedded sub-document : nested json docs.
  
-_id Field: 12 bytes hexadecimal number which assures the uniqueness of every document. these 12 byte are made of: 4 bytes for the current timestamp, next 3 bytes for machine id(what machine created this object), next 2 for process id of mongoDB server, Last 3 bytes are simple incremental VALUE.
+_id Field: 12 bytes hexadecimal number which assures the uniqueness of every document. 
+these 12 byte are made of: 4 bytes for the current timestamp, 
+next 3 bytes for machine id(what machine created this object), 
+next 2 for process id of mongoDB server, 
+Last 3 bytes are simple incremental VALUE.
 
 Advantages of MongoDB over RDBMS: Schema less, Structure of a single object is clear, no complex join, deep query, Tuning, Ease of scale out, no conversion is required. 
 
@@ -24,7 +28,7 @@ show db --> should be atleast one document
 db.movie.insert({name: movie}) --> to insert item
 db.dropDatabase() --> to drop existing database --> dropped deleted.
 
-Querying the database: 
+Querying the database: find() method applications
 db.dbname.find() --> find() method.
 db.dbname.find({}).pretty() --> prettyfy the docs.
 db.dbname.find({"name":"Jack"}) --> To find named Jack
