@@ -32,6 +32,8 @@ Querying the database: find() method applications
 db.dbname.find() --> find() method.
 db.dbname.find({}).pretty() --> prettyfy the docs.
 db.dbname.find({"name":"Jack"}) --> To find named Jack
+db.collection.find()  --> to show the documents inside collection
+db.collection.find().limit(3)  --> To limit the documents to top 3
 
 equality :- ":" works as equls to symbol
 less than:- {<key>:{$lt:<value>}}, $lt : less than or $lte (less than and eql)
